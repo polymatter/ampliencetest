@@ -10,13 +10,7 @@ import type { ContentFieldExtension } from 'dc-extensions-sdk';
 //   minLength: number;
 //   maxLength: number;
 // }
-interface FieldModel {
-  description: string;
-  maximum: number;
-  minimum: number;
-  title: string;
-  type: string;
-}
+type FieldModel = number;
 interface Parameters {
   instance: {};
   installation: {
@@ -24,24 +18,14 @@ interface Parameters {
   }
 }
 
-async function initialize() {
-  const sdk = await init<ContentFieldExtension<FieldModel, Parameters>>();
-  console.log('connected...');
-  console.log(`value: `);
-  await sdk.field.setValue(3 as unknown as FieldModel)
-  console.log(await sdk.field.getValue());
-  
-  console.log(`schema: `);
-  console.log(sdk.field.schema);
-
-}
-
-initialize();
+const sdk = async function() {
+  return await init<ContentFieldExtension<FieldModel, Parameters>>()
+}();
 
 function App() {
   return (
     <div className="App">
-      This is a test ... 
+      This is a test ... {async function() { return await (await sdk).field.getValue() }()}
     </div>
   );
 }
