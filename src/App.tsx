@@ -1,5 +1,3 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { init } from 'dc-extensions-sdk';
 import type { ContentFieldExtension } from 'dc-extensions-sdk';
@@ -23,9 +21,12 @@ interface Parameters {
 async function initialize() {
   const sdk = await init<ContentFieldExtension<FieldModel, Parameters>>();
   console.log('connected...');
-  console.log(`value: ${sdk.field.getValue()}`);
-  console.log(`schema: ${sdk.field.schema}`);
-  console.log(`contentItem: ${sdk.contentItem.getCurrent()}`);
+  console.log(`value: `);
+  console.log(await sdk.field.getValue());
+  console.log(`schema: `);
+  console.log(sdk.field.schema);
+  console.log(`contentItem: `);
+  console.log(await sdk.contentItem.getCurrent());
 }
 
 console.log('ping1');
