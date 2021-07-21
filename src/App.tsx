@@ -2,13 +2,30 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { init } from 'dc-extensions-sdk';
+import type { ContentFieldExtension } from 'dc-extensions-sdk';
+
+interface FieldModel {
+  title: string;
+  type: string;
+  control: string;
+  format: string;
+  minLength: number;
+  maxLength: number;
+}
+
+interface Parameters {
+  instance: {};
+  installation: {
+    configParam: string;
+  }
+}
 
 async function initialize() {
-  console.log('ping2');
-  const sdk:any = await init();
-  console.log('ping3');
-  const contentItem = await sdk.contentItem.getCurrent();
-  console.log(`contentItem ${contentItem}`);
+  const sdk = await init<ContentFieldExtension<FieldModel, Parameters>>();
+  console.log('connected...');
+  console.log(`value: ${sdk.field.getValue()}`);
+  console.log(`schema: ${sdk.field.schema}`);
+  console.log(`contentItem: ${sdk.contentItem.getCurrent()}`);
 }
 
 console.log('ping1');
