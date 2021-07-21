@@ -4,30 +4,20 @@ import './App.css';
 import { init } from 'dc-extensions-sdk';
 
 async function initialize() {
+  console.log('ping2');
   const sdk:any = await init();
+  console.log('ping3');
   const contentItem = await sdk.contentItem.getCurrent();
   console.log(`contentItem ${contentItem}`);
 }
 
+console.log('ping1');
 initialize();
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      This is a test ... 
     </div>
   );
 }
