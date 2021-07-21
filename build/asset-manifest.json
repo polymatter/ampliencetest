@@ -1,23 +1,22 @@
 {
   "files": {
     "main.css": "/ampliencetest/build/static/css/main.a617e044.chunk.css",
-    "main.js": "/ampliencetest/build/static/js/main.ae689a69.chunk.js",
-    "main.js.map": "/ampliencetest/build/static/js/main.ae689a69.chunk.js.map",
+    "main.js": "/ampliencetest/build/static/js/main.23a52601.chunk.js",
+    "main.js.map": "/ampliencetest/build/static/js/main.23a52601.chunk.js.map",
     "runtime-main.js": "/ampliencetest/build/static/js/runtime-main.b8020fd2.js",
     "runtime-main.js.map": "/ampliencetest/build/static/js/runtime-main.b8020fd2.js.map",
-    "static/js/2.72d59f56.chunk.js": "/ampliencetest/build/static/js/2.72d59f56.chunk.js",
-    "static/js/2.72d59f56.chunk.js.map": "/ampliencetest/build/static/js/2.72d59f56.chunk.js.map",
+    "static/js/2.96a92781.chunk.js": "/ampliencetest/build/static/js/2.96a92781.chunk.js",
+    "static/js/2.96a92781.chunk.js.map": "/ampliencetest/build/static/js/2.96a92781.chunk.js.map",
     "static/js/3.b5baad96.chunk.js": "/ampliencetest/build/static/js/3.b5baad96.chunk.js",
     "static/js/3.b5baad96.chunk.js.map": "/ampliencetest/build/static/js/3.b5baad96.chunk.js.map",
     "index.html": "/ampliencetest/build/index.html",
     "static/css/main.a617e044.chunk.css.map": "/ampliencetest/build/static/css/main.a617e044.chunk.css.map",
-    "static/js/2.72d59f56.chunk.js.LICENSE.txt": "/ampliencetest/build/static/js/2.72d59f56.chunk.js.LICENSE.txt",
-    "static/media/logo.6ce24c58.svg": "/ampliencetest/build/static/media/logo.6ce24c58.svg"
+    "static/js/2.96a92781.chunk.js.LICENSE.txt": "/ampliencetest/build/static/js/2.96a92781.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.b8020fd2.js",
-    "static/js/2.72d59f56.chunk.js",
+    "static/js/2.96a92781.chunk.js",
     "static/css/main.a617e044.chunk.css",
-    "static/js/main.ae689a69.chunk.js"
+    "static/js/main.23a52601.chunk.js"
   ]
 }
