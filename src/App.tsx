@@ -1,6 +1,15 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { init } from 'dc-extensions-sdk';
+
+async function initialize() {
+  const sdk:any = await init();
+  const contentItem = await sdk.contentItem.getCurrent();
+  console.log(`contentItem ${contentItem}`);
+}
+
+initialize();
 
 function App() {
   return (
