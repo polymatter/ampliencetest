@@ -13,6 +13,13 @@ interface Parameters {
 
 type AmplienceSdk = ContentFieldExtension<FieldModel, Parameters>;
 
+const api = (search:string) => `https://dev.poq.io/clients/demo/search/predictive?keyword=${search}`;
+const headers = {
+  "Authorization": "Bearer anonymous+1fcac1b5-a3c6-4a62-80c1-62a478186863",
+  "User-Agent": "com.poq.poqdemoapp-uat/20.0.1 iOS/15.0",
+  "poq-app-identifier": "ca315772-4803-4b48-ae99-5683133770e6"
+}
+
 function App() {
   const [value, setValue] = useState("hello");
   const [sdk, setSdk] = useState<AmplienceSdk>();
@@ -32,7 +39,7 @@ function App() {
     return !!sdk;
   }
 
-  const setValueTo = (newValue: FieldModel = "hi") => {
+  const setValueTo = (newValue: FieldModel = "No suggestion") => {
     if (!hasLoadedSdk(sdk))
       return;
 
@@ -40,12 +47,8 @@ function App() {
     setValue(newValue);
   }
 
-  const increment = () => {
-    setValueTo(value + "hi1");
-  }
-
-  const decrement = () => {
-    setValueTo(value + "hi2");
+  const fetchSuggestions = () => {
+    fetch(api('dr'), { headers }).then(response => response.json()).then(console.log);
   }
 
   if (!hasLoadedSdk(sdk))
@@ -54,8 +57,8 @@ function App() {
   return (
     <div className="App">
       Value is ... {value}
-      <button onClick={increment}>+</button>
-      <button onClick={decrement}>-</button>
+      <input type="text" className="input" />
+      <button onClick={fetchSuggestions}>+</button>
     </div>
   );
 }
