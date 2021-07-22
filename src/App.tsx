@@ -3,7 +3,7 @@ import { init } from 'dc-extensions-sdk';
 import type { ContentFieldExtension } from 'dc-extensions-sdk';
 import { useState, useEffect } from 'react';
 
-type FieldModel = number;
+type FieldModel = string;
 interface Parameters {
   instance: {};
   installation: {
@@ -14,7 +14,7 @@ interface Parameters {
 type AmplienceSdk = ContentFieldExtension<FieldModel, Parameters>;
 
 function App() {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState("hello");
   const [sdk, setSdk] = useState<AmplienceSdk>();
 
   useEffect(() => {
@@ -32,7 +32,7 @@ function App() {
     return !!sdk;
   }
 
-  const setValueTo = (newValue: FieldModel = 3) => {
+  const setValueTo = (newValue: FieldModel = "hi") => {
     if (!hasLoadedSdk(sdk))
       return;
 
@@ -41,11 +41,11 @@ function App() {
   }
 
   const increment = () => {
-    setValueTo(value + 1);
+    setValueTo(value + "hi1");
   }
 
   const decrement = () => {
-    setValueTo(value - 1);
+    setValueTo(value + "hi2");
   }
 
   if (!hasLoadedSdk(sdk))
