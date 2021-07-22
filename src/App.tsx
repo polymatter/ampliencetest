@@ -25,9 +25,12 @@ function App() {
   useEffect(() => {
     init<ContentFieldExtension<FieldModel, Parameters>>().then(sdk => {
       setSdk(sdk);
-      setValueTo(3);
     });
   }, []);
+
+  useEffect(() => {
+    setValueTo(3);
+  }, [sdk])
 
   const setValueTo = (newValue: FieldModel) => {
     if (!sdk.field)
