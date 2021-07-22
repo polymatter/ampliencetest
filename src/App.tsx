@@ -23,21 +23,36 @@ function App() {
   const [ sdk, setSdk ] = useState<Partial<ContentFieldExtension<FieldModel, Parameters>>>({});
 
   useEffect(() => {
-    init<ContentFieldExtension<FieldModel, Parameters>>().then(sdk => {
-      setSdk(sdk);
-    });
+    init<ContentFieldExtension<FieldModel, Parameters>>().then(setSdk);
   }, []);
 
   useEffect(() => {
-    setValueTo(3);
+    if (!sdk.field)
+      return;
+
+    sdk.field.getValue().then(setValueTo);
   }, [sdk])
 
-  const setValueTo = (newValue: FieldModel) => {
+  const setValueTo = (newValue: FieldModel = 3) => {
     if (!sdk.field)
       return;
 
     sdk.field.setValue(newValue);
     setValue(newValue);
+  }
+
+  const increment = () => {
+    if (!sdk.field)
+      return;
+    
+    setValueTo(value + 1);
+  }
+
+  const decrement = () => {
+    if (!sdk.field)
+      return;
+
+    setValueTo(value - 1);
   }
 
   if (!sdk.field)
@@ -46,6 +61,8 @@ function App() {
   return (
     <div className="App">
       Value is ... {value}
+      <button onClick={increment}>+</button>
+      <button onClick={decrement}>-</button>
     </div>
   );
 }
