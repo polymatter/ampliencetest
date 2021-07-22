@@ -15,6 +15,7 @@ type AmplienceSdk = ContentFieldExtension<FieldModel, Parameters>;
 
 const api = (search: string) => `https://dev.poq.io/clients/demo/search/predictive?keyword=${search}`;
 const headers = {
+  "Access-Control-Allow-Headers": "*",
   "Access-Control-Allow-Origin": "*",
   "Authorization": "Bearer anonymous+1fcac1b5-a3c6-4a62-80c1-62a478186863",
   "User-Agent": "com.poq.poqdemoapp-uat/20.0.1 iOS/15.0",
@@ -33,23 +34,15 @@ function App() {
     if (!hasLoadedSdk(sdk))
       return;
 
-    sdk.field.getValue().then(setValueTo);
+    sdk.field.getValue();
   }, [sdk]);
 
   const hasLoadedSdk = (sdk: AmplienceSdk | undefined): sdk is AmplienceSdk => {
     return !!sdk;
   }
 
-  const setValueTo = (newValue: FieldModel = "No suggestion") => {
-    if (!hasLoadedSdk(sdk))
-      return;
-
-    sdk.field.setValue(newValue);
-    setValue(newValue);
-  }
-
   const fetchSuggestions = () => {
-    fetch(api('dr'), { headers }).then(response => response.json()).then(console.log);
+    fetch(api('dr'), { headers }).then(response => response.json()).then(data => { console.log(data); setValue("elephant")});
   }
 
   if (!hasLoadedSdk(sdk))

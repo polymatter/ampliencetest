@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/ampliencetest/build/static/css/main.a617e044.chunk.css",
-    "main.js": "/ampliencetest/build/static/js/main.c41ab4b4.chunk.js",
-    "main.js.map": "/ampliencetest/build/static/js/main.c41ab4b4.chunk.js.map",
+    "main.js": "/ampliencetest/build/static/js/main.dad201e1.chunk.js",
+    "main.js.map": "/ampliencetest/build/static/js/main.dad201e1.chunk.js.map",
     "runtime-main.js": "/ampliencetest/build/static/js/runtime-main.929cc018.js",
     "runtime-main.js.map": "/ampliencetest/build/static/js/runtime-main.929cc018.js.map",
     "static/js/2.6dc3a09b.chunk.js": "/ampliencetest/build/static/js/2.6dc3a09b.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.929cc018.js",
     "static/js/2.6dc3a09b.chunk.js",
     "static/css/main.a617e044.chunk.css",
-    "static/js/main.c41ab4b4.chunk.js"
+    "static/js/main.dad201e1.chunk.js"
   ]
 }
