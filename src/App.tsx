@@ -11,30 +11,29 @@ interface Parameters {
   }
 }
 
-async function initialize() {
-  const sdk = await init<ContentFieldExtension<FieldModel, Parameters>>();
-  await sdk.field.setValue(3)
-  return sdk;
-};
-
+type AmplienceSdk = ContentFieldExtension<FieldModel, Parameters>;
 
 function App() {
-  const [ value, setValue ] = useState(0);
-  const [ sdk, setSdk ] = useState<Partial<ContentFieldExtension<FieldModel, Parameters>>>({});
+  const [value, setValue] = useState(0);
+  const [sdk, setSdk] = useState<AmplienceSdk>();
 
   useEffect(() => {
-    init<ContentFieldExtension<FieldModel, Parameters>>().then(setSdk);
+    init<AmplienceSdk>().then(setSdk);
   }, []);
 
   useEffect(() => {
-    if (!sdk.field)
+    if (!hasLoadedSdk(sdk))
       return;
 
     sdk.field.getValue().then(setValueTo);
-  }, [sdk])
+  }, [sdk]);
+
+  const hasLoadedSdk = (sdk: AmplienceSdk | undefined): sdk is AmplienceSdk => {
+    return !!sdk;
+  }
 
   const setValueTo = (newValue: FieldModel = 3) => {
-    if (!sdk.field)
+    if (!hasLoadedSdk(sdk))
       return;
 
     sdk.field.setValue(newValue);
@@ -42,20 +41,14 @@ function App() {
   }
 
   const increment = () => {
-    if (!sdk.field)
-      return;
-    
     setValueTo(value + 1);
   }
 
   const decrement = () => {
-    if (!sdk.field)
-      return;
-
     setValueTo(value - 1);
   }
 
-  if (!sdk.field)
+  if (!hasLoadedSdk(sdk))
     return <div className="App">Loading ...</div>
 
   return (
