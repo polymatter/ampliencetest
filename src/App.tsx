@@ -18,8 +18,9 @@ const headers = {
   "Access-Control-Allow-Headers": "*",
   "Access-Control-Allow-Origin": "*",
   "Authorization": "Bearer anonymous+1fcac1b5-a3c6-4a62-80c1-62a478186863",
+  "Content-Type": "application/json",
+  "poq-app-identifier": "ca315772-4803-4b48-ae99-5683133770e6",
   "User-Agent": "com.poq.poqdemoapp-uat/20.0.1 iOS/15.0",
-  "poq-app-identifier": "ca315772-4803-4b48-ae99-5683133770e6"
 }
 
 function App() {
@@ -42,7 +43,12 @@ function App() {
   }
 
   const fetchSuggestions = () => {
-    fetch(api('dr'), { headers }).then(response => response.json()).then(data => { console.log(data); setValue("elephant")});
+    fetch(api('dr'), { method: 'GET', headers })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        setValue("elephant")
+      });
   }
 
   if (!hasLoadedSdk(sdk))
