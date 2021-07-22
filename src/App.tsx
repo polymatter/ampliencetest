@@ -1,7 +1,7 @@
 import './App.css';
 import { init } from 'dc-extensions-sdk';
 import type { ContentFieldExtension } from 'dc-extensions-sdk';
-import { useAsync } from 'react-async';
+import { useState, useEffect } from 'react';
 
 type FieldModel = number;
 interface Parameters {
@@ -17,34 +17,34 @@ async function initialize() {
   return sdk;
 };
 
-initialize();
 
 function App() {
-  const { data, error, isLoading } = useAsync({ promiseFn: init as any })
-  const { data: value , error: errorValue, isLoading: isLoadingValue } = useAsync({ promiseFn: (data as ContentFieldExtension).field.getValue})
+  const [ value, setValue ] = useState(0);
+  const [ sdk, setSdk ] = useState<Partial<ContentFieldExtension<FieldModel, Parameters>>>({});
 
-  if (error) 
-    return <div className="App">Error {error}</div>
+  useEffect(() => {
+    init<ContentFieldExtension<FieldModel, Parameters>>().then(sdk => {
+      setSdk(sdk);
+      setValueTo(3);
+    });
+  }, []);
 
-  if (isLoading)
-    return <div className="App">Loading</div>
+  const setValueTo = (newValue: FieldModel) => {
+    if (!sdk.field)
+      return;
 
-  if (data) {
-    if (errorValue)
-      return <div className="App">Error Value {errorValue}</div>
-
-    if (isLoadingValue)
-      return <div className="App">Loading Value</div>
-
-    if (value)
-      return (
-        <div className="App">
-          Value is ... {value}
-        </div>
-      );
+    sdk.field.setValue(newValue);
+    setValue(newValue);
   }
 
-  return <div className="App">Error 2</div>
+  if (!sdk.field)
+    return <div className="App">Loading ...</div>
+
+  return (
+    <div className="App">
+      Value is ... {value}
+    </div>
+  );
 }
 
 export default App;
