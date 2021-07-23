@@ -13,13 +13,15 @@ interface Parameters {
 
 type AmplienceSdk = ContentFieldExtension<FieldModel, Parameters>;
 
-const api = (search: string) => `https://dev.poq.io/clients/demo/search/predictive?keyword=${search}`;
+// const api = (search: string) => `https://dev.poq.io/clients/demo/search/predictive?keyword=${search}`;
+const api = (search: string) => `https://poq-ctx-search-api-dev/search?q=${search}`;
 const headers = {
   "Access-Control-Allow-Headers": "*",
   "Access-Control-Allow-Origin": "*",
   "Authorization": "Bearer anonymous+1fcac1b5-a3c6-4a62-80c1-62a478186863",
   "Content-Type": "application/json",
   "poq-app-identifier": "ca315772-4803-4b48-ae99-5683133770e6",
+  "Poq-Currency-Identifier": "GBP",
   "User-Agent": "com.poq.poqdemoapp-uat/20.0.1 iOS/15.0",
 }
 
