@@ -2,6 +2,7 @@ import './App.css';
 import { init } from 'dc-extensions-sdk';
 import type { ContentFieldExtension } from 'dc-extensions-sdk';
 import { useState, useEffect } from 'react';
+import { SearchBox } from './style';
 
 type FieldModel = string;
 interface Parameters {
@@ -59,7 +60,7 @@ function App() {
   return (
     <div className="App">
       Value is ... {value}
-      <input type="text" className="input" />
+      <SearchBox type="text" className="input" />
       <button onClick={fetchSuggestions}>+</button>
     </div>
   );
