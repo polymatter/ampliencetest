@@ -45,12 +45,13 @@ function App() {
     return !!sdk;
   }
 
-  const searchWordChange = (event : React.ChangeEvent<HTMLInputElement>) => {
+  const searchWordChangeHandler = (event : React.ChangeEvent<HTMLInputElement>) => {
     const searchWord = event.target.value;
     setSearchWord(searchWord);
   }
 
   const fetchSuggestions = () => {
+    console.log('click');
     fetch(api('dr'), { method: 'GET', headers })
       .then(response => response.json())
       .then(data => {
@@ -64,11 +65,11 @@ function App() {
   return (
     <AppWrap  className="App">
       <Title>Product</Title>
-      <Text>Enter a product name below, then click Search to find the right product {searchWord}</Text>
+      <Text>Enter a product name below, then click Search to find the right product</Text>
       <SearchBoxWrap>
-        <SearchBox placeholder="Product name eg. Dress" type="text" className="input" onChange={searchWordChange} value={searchWord} />
+        <SearchBox placeholder="Product name eg. Dress" type="text" className="input" onChange={searchWordChangeHandler} value={searchWord} />
       </SearchBoxWrap>
-      <SearchButton onClick={fetchSuggestions}>Search</SearchButton>
+      <SearchButton onClick={fetchSuggestions} disabled={searchWord.length < 2}>Search</SearchButton>
     </AppWrap>
   );
 }
