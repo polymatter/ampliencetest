@@ -1,11 +1,24 @@
 import styled from 'styled-components';
 
+export const AppWrap = styled.div`
+    width: 25%;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 0 4px rgb(0 0 0 / 5%);
+    background: #fff;
+    overflow-y: hidden;
+`;
+
 export const Title = styled.div`
     padding-bottom: 10px;
     font-weight: bold;
 `;
 
 export const Text = styled.div`
+    padding-bottom: 10px;
+`;
+
+export const SearchBoxWrap = styled.div`
     padding-bottom: 10px;
 `;
 
@@ -19,6 +32,20 @@ export const SearchBox = styled.input`
     line-height: 1.5;
     color: #000;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+    -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+
 `;
 
 export const SearchButton = styled.button`
