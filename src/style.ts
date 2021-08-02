@@ -11,7 +11,7 @@ export const Text = styled.div`
 
 export const SearchBox = styled.input`
     width: 100%;
-    padding: 0.5em 0.8em 0.5em 2.5em
+    padding: 0.5em 0.8em 0.5em 2.5em;
     border: 1px solid #ced4da;
     border-radius: 4px;
     outline: none;

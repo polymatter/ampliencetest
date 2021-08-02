@@ -61,7 +61,7 @@ function App() {
     <div className="App">
       <Title>Product</Title>
       <Text>Enter a product name below, then click Search to find the right product</Text>
-      <SearchBox type="text" className="input" />
+      <SearchBox placeholder="Search" type="text" className="input" />
       <SearchButton onClick={fetchSuggestions}>Search</SearchButton>
     </div>
   );
