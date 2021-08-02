@@ -15,9 +15,9 @@ export const SearchBox = styled.input`
     border: 1px solid #ced4da;
     border-radius: 4px;
     outline: none;
-    background: #fff
+    background: #fff;
     line-height: 1.5;
-    color: #000
+    color: #000;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 `;
 
