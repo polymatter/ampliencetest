@@ -27,8 +27,8 @@ const headers = {
 }
 
 function App() {
-  const [value, setValue] = useState("hello");
   const [sdk, setSdk] = useState<AmplienceSdk>();
+  const [searchWord, setSearchWord] = useState("") 
 
   useEffect(() => {
     init<AmplienceSdk>().then(setSdk);
@@ -45,12 +45,16 @@ function App() {
     return !!sdk;
   }
 
+  const searchWordChange = (event : React.ChangeEvent<HTMLInputElement>) => {
+    const searchWord = event.target.value;
+    setSearchWord(searchWord);
+  }
+
   const fetchSuggestions = () => {
     fetch(api('dr'), { method: 'GET', headers })
       .then(response => response.json())
       .then(data => {
         console.log(data);
-        setValue("elephant")
       });
   }
 
@@ -60,9 +64,9 @@ function App() {
   return (
     <AppWrap  className="App">
       <Title>Product</Title>
-      <Text>Enter a product name below, then click Search to find the right product</Text>
+      <Text>Enter a product name below, then click Search to find the right product {searchWord}</Text>
       <SearchBoxWrap>
-        <SearchBox placeholder="Search" type="text" className="input" />
+        <SearchBox placeholder="Product name eg. Dress" type="text" className="input" onChange={searchWordChange} value={searchWord} />
       </SearchBoxWrap>
       <SearchButton onClick={fetchSuggestions}>Search</SearchButton>
     </AppWrap>
