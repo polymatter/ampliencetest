@@ -2,7 +2,7 @@ import './App.css';
 import { init } from 'dc-extensions-sdk';
 import type { ContentFieldExtension } from 'dc-extensions-sdk';
 import { useState, useEffect } from 'react';
-import { SearchBox, Title, Text, SearchButton, SearchBoxWrap } from './style';
+import { AppWrap, SearchBox, Title, Text, SearchButton, SearchBoxWrap } from './style';
 
 type FieldModel = string;
 interface Parameters {
@@ -58,14 +58,14 @@ function App() {
     return <div className="App">Loading ...</div>
 
   return (
-    <div className="App">
+    <AppWrap  className="App">
       <Title>Product</Title>
       <Text>Enter a product name below, then click Search to find the right product</Text>
       <SearchBoxWrap>
         <SearchBox placeholder="Search" type="text" className="input" />
       </SearchBoxWrap>
       <SearchButton onClick={fetchSuggestions}>Search</SearchButton>
-    </div>
+    </AppWrap>
   );
 }
 
