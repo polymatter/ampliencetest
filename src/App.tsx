@@ -2010,7 +2010,9 @@ function App() {
     if (searchWord.length < 2)
       return;
 
-    setResults(realdata.filter(c => c.includes(searchWord)));
+    setTimeout(() => {
+      setResults(realdata.filter(c => c.toLowerCase().includes(searchWord.toLowerCase())));
+    }, 500);
 
     // fetch(api('dr'), { method: 'GET', headers })
     //   .then(response => response.json())
@@ -2024,13 +2026,12 @@ function App() {
 
   return (
     <AppWrap  className="App">
-      <Title>Product</Title>
-      <Text>Enter a product name below, then click Search to find the right product {searchWord} </Text>
+      <Title>Category</Title>
+      <Text>Enter a category name below, then click Search to find the right category</Text>
       <SearchBoxWrap>
         <SearchBox placeholder="Product name eg. Dress" type="text" className="input" onChange={searchWordChangeHandler} value={searchWord} />
       </SearchBoxWrap>
       <SearchButton onClick={fetchSuggestions} disabled={searchWord.length < 2}>Search</SearchButton>
-      <div>results {results.length}</div>
       {
         results.length > 0 &&
         <ListTable>

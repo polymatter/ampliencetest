@@ -91,4 +91,5 @@ export const ListTableRow = styled.tr`
 
 export const ListTableData = styled.td`
     padding: 8px 16px;
+    text-align: left;
 `;
