@@ -34,12 +34,12 @@ interface PoqCategory {
   categories?: PoqCategory[]
 }
 
-function getCategories(item : PoqCategory): string[] {
+function getCategories(item : PoqCategory): {name: string, url?: string}[] {
   if (!Array.isArray(item.categories))
-    return [item.name];
+    return [{name: item.name}];
 
   return item.categories.flatMap(child => {
-    const a = getCategories(child).map(c => `${item.name} > ${c}`);
+    const a = getCategories(child).map(c => ({name :`${item.name} > ${c}`}));
     return a;
   });
 }
@@ -1976,7 +1976,7 @@ const realdata = data.flatMap(getCategories);
 function App() {
   const [sdk, setSdk] = useState<AmplienceSdk>();
   const [searchWord, setSearchWord] = useState("") ;
-  const [results, setResults] = useState([""]);
+  const [results, setResults] = useState([] as {name: string, url?: string}[]);
 
   useEffect(() => {
     init<AmplienceSdk>().then(setSdk);
@@ -1991,7 +1991,7 @@ function App() {
 
   useEffect(() => {
     if (searchWord.length < 2) {
-      setResults([""]);
+      setResults([]);
     }
   }, [searchWord])
 
@@ -2002,7 +2002,6 @@ function App() {
   const searchWordChangeHandler = (event : React.ChangeEvent<HTMLInputElement>) => {
     const searchWord = event.target.value;
     setSearchWord(searchWord);
-    setResults(realdata.filter(c => c.includes(searchWord)));
   }
 
   const fetchSuggestions = () => {
@@ -2011,7 +2010,7 @@ function App() {
       return;
 
     setTimeout(() => {
-      setResults(realdata.filter(c => c.toLowerCase().includes(searchWord.toLowerCase())));
+      setResults(realdata.filter(c => c.name.toLowerCase().includes(searchWord.toLowerCase())));
     }, 500);
 
     // fetch(api('dr'), { method: 'GET', headers })
@@ -2039,7 +2038,7 @@ function App() {
             {
               results.map(result => {
                 return <ListTableRow>
-                  <ListTableData>{result}</ListTableData>
+                  <ListTableData>{result.name}</ListTableData>
                 </ListTableRow>
               })
             }
