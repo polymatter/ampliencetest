@@ -38,10 +38,10 @@ function getCategories(item : PoqCategory): string[] {
   if (!Array.isArray(item.categories))
     return [item.name];
 
-  return item.categories.map(child => {
+  return item.categories.flatMap(child => {
     const a = getCategories(child).map(c => `${item.name} > ${c}`);
     return a;
-  }).flat();
+  });
 }
 
 const data : PoqCategory[] = [
@@ -1971,6 +1971,8 @@ const data : PoqCategory[] = [
   }
 ]
 
+const realdata = data.map(getCategories);
+
 function App() {
   const [sdk, setSdk] = useState<AmplienceSdk>();
   const [searchWord, setSearchWord] = useState("") ;
@@ -2013,6 +2015,9 @@ function App() {
     <AppWrap  className="App">
       <Title>Product</Title>
       <Text>Enter a product name below, then click Search to find the right product</Text>
+      {
+        realdata.map(s => <span>{s}</span>)
+      }
       <SearchBoxWrap>
         <SearchBox placeholder="Product name eg. Dress" type="text" className="input" onChange={searchWordChangeHandler} value={searchWord} />
       </SearchBoxWrap>
