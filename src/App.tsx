@@ -1989,6 +1989,12 @@ function App() {
     sdk.field.getValue();
   }, [sdk]);
 
+  useEffect(() => {
+    if (searchWord.length < 2) {
+      setResults([""]);
+    }
+  }, [searchWord])
+
   const hasLoadedSdk = (sdk: AmplienceSdk | undefined): sdk is AmplienceSdk => {
     return !!sdk;
   }
@@ -2024,7 +2030,7 @@ function App() {
       </SearchBoxWrap>
       <SearchButton onClick={fetchSuggestions} disabled={searchWord.length < 2}>Search</SearchButton>
       {
-        results.map(c => <div>c</div>)
+        results.map(c => <div>{c}</div>)
       }
     </AppWrap>
   );
