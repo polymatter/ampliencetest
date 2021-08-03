@@ -34,12 +34,12 @@ interface PoqCategory {
   categories?: PoqCategory[]
 }
 
-function getCategories(item : PoqCategory): {name: string, url?: string}[] {
+function getCategories(item : PoqCategory): string[] {
   if (!Array.isArray(item.categories))
-    return [{name: item.name}];
+    return [item.name];
 
   return item.categories.flatMap(child => {
-    const a = getCategories(child).map(c => ({name :`${item.name} > ${c}`}));
+    const a = getCategories(child).map(c => `${item.name} > ${c}`);
     return a;
   });
 }
@@ -2009,7 +2009,7 @@ function App() {
     if (searchWord.length < 2)
       return;
 
-    setResults(realdata.map(c => c.name).filter(c => c.toLowerCase().includes(searchWord.toLowerCase())));
+    setResults(realdata.filter(c => c.toLowerCase().includes(searchWord.toLowerCase())));
 
     // fetch(api('dr'), { method: 'GET', headers })
     //   .then(response => response.json())
