@@ -36,10 +36,10 @@ interface PoqCategory {
 
 function getCategories(item : PoqCategory): {name: string, url?: string}[] {
   if (!Array.isArray(item.categories))
-    return [{name: item.name, url: item.imageUrl}];
+    return [{name: item.name}];
 
   return item.categories.flatMap(child => {
-    const a = getCategories(child).map(c => ({name :`${item.name} > ${c.name}`, url: c.url}));
+    const a = getCategories(child).map(c => ({name :`${item.name} > ${c}`}));
     return a;
   });
 }
@@ -1976,7 +1976,7 @@ const realdata = data.flatMap(getCategories);
 function App() {
   const [sdk, setSdk] = useState<AmplienceSdk>();
   const [searchWord, setSearchWord] = useState("") ;
-  const [results, setResults] = useState([] as {name: string, url?: string}[]);
+  const [results, setResults] = useState([""]);
 
   useEffect(() => {
     init<AmplienceSdk>().then(setSdk);
@@ -1991,7 +1991,7 @@ function App() {
 
   useEffect(() => {
     if (searchWord.length < 2) {
-      setResults([]);
+      setResults([""]);
     }
   }, [searchWord])
 
@@ -2010,7 +2010,7 @@ function App() {
       return;
 
     setTimeout(() => {
-      setResults(realdata.filter(c => c.name.toLowerCase().includes(searchWord.toLowerCase())));
+      setResults(realdata.map(c => c.name).filter(c => c.toLowerCase().includes(searchWord.toLowerCase())));
     }, 500);
 
     // fetch(api('dr'), { method: 'GET', headers })
@@ -2038,8 +2038,7 @@ function App() {
             {
               results.map(result => {
                 return <ListTableRow>
-                  <ListTableData><img src={result.url} /></ListTableData>
-                  <ListTableData>{result.name}</ListTableData>
+                  <ListTableData>{result}</ListTableData>
                 </ListTableRow>
               })
             }
