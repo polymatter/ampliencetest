@@ -2009,9 +2009,7 @@ function App() {
     if (searchWord.length < 2)
       return;
 
-    setTimeout(() => {
-      setResults(realdata.map(c => c.name).filter(c => c.toLowerCase().includes(searchWord.toLowerCase())));
-    }, 500);
+    setResults(realdata.map(c => c.name).filter(c => c.toLowerCase().includes(searchWord.toLowerCase())));
 
     // fetch(api('dr'), { method: 'GET', headers })
     //   .then(response => response.json())
