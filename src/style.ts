@@ -23,7 +23,7 @@ export const SearchBoxWrap = styled.div`
 `;
 
 export const SearchBox = styled.input`
-    width: 100%;
+    width: calc(100% - 3.3em);
     padding: 0.5em 0.8em 0.5em 2.5em;
     border: 1px solid #ced4da;
     border-radius: 4px;
@@ -66,4 +66,29 @@ export const SearchButton = styled.button`
     cursor: pointer;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     -webkit-appearance: button;
+`;
+
+export const ListTable = styled.table`
+    display: table;
+    text-indent: initial;
+    border-spacing: 2px;
+    width: 100%;
+    border: none;
+    padding-bottom: 10px;
+`;
+
+export const ListTableBody = styled.tbody`
+    display: table-row-group;
+    vertical-align: middle;
+`;
+
+export const ListTableRow = styled.tr`
+    display: table-row;
+    border-bottom: 1px solid #efefef;
+    outline: none;
+    cursor: pointer;
+`;
+
+export const ListTableData = styled.td`
+    padding: 8px 16px;
 `;

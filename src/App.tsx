@@ -2,7 +2,7 @@ import './App.css';
 import { init } from 'dc-extensions-sdk';
 import type { ContentFieldExtension } from 'dc-extensions-sdk';
 import { useState, useEffect } from 'react';
-import { AppWrap, SearchBox, Title, Text, SearchButton, SearchBoxWrap } from './style';
+import { AppWrap, SearchBox, Title, Text, SearchButton, SearchBoxWrap, ListTable, ListTableBody, ListTableRow, ListTableData } from './style';
 
 type FieldModel = string;
 interface Parameters {
@@ -2009,7 +2009,7 @@ function App() {
     if (searchWord.length < 2)
       return;
 
-    setResults(realdata.filter(c => c.includes(searchWord)));
+    setTimeout(() => setResults(realdata.filter(c => c.includes(searchWord))), 500);
 
     // fetch(api('dr'), { method: 'GET', headers })
     //   .then(response => response.json())
@@ -2030,7 +2030,18 @@ function App() {
       </SearchBoxWrap>
       <SearchButton onClick={fetchSuggestions} disabled={searchWord.length < 2}>Search</SearchButton>
       {
-        results.map(c => <div>{c}</div>)
+        results.length > 0 &&
+        <ListTable>
+          <ListTableBody>
+            {
+              results.map(result => {
+                <ListTableRow>
+                  <ListTableData>{result}</ListTableData>
+                </ListTableRow>
+              })
+            }
+          </ListTableBody>
+        </ListTable>
       }
     </AppWrap>
   );
