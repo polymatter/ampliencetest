@@ -2025,8 +2025,8 @@ function App() {
 
   return (
     <AppWrap  className="App">
-      <Title>Category</Title>
-      <Text>Enter a category name below, then click Search to find the right category</Text>
+      <Title>Product</Title>
+      <Text>Enter a product name below, then click Search to find the right product</Text>
       <SearchBoxWrap>
         <SearchBox placeholder="Product name eg. Dress" type="text" className="input" onChange={searchWordChangeHandler} value={searchWord} />
       </SearchBoxWrap>
