@@ -36,10 +36,10 @@ interface PoqCategory {
 
 function getCategories(item : PoqCategory): {name: string, url?: string}[] {
   if (!Array.isArray(item.categories))
-    return [{name: item.name}];
+    return [{name: item.name, url: item.imageUrl}];
 
   return item.categories.flatMap(child => {
-    const a = getCategories(child).map(c => ({name :`${item.name} > ${c}`}));
+    const a = getCategories(child).map(c => ({name :`${item.name} > ${c.name}`, url: c.url}));
     return a;
   });
 }
@@ -2038,6 +2038,7 @@ function App() {
             {
               results.map(result => {
                 return <ListTableRow>
+                  <ListTableData><img src={result.url} /></ListTableData>
                   <ListTableData>{result.name}</ListTableData>
                 </ListTableRow>
               })
