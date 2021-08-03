@@ -2037,7 +2037,7 @@ function App() {
           <ListTableBody>
             {
               results.map(result => {
-                <ListTableRow>
+                return <ListTableRow>
                   <ListTableData>{result}</ListTableData>
                 </ListTableRow>
               })
