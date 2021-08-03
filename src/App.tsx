@@ -1971,12 +1971,12 @@ const data : PoqCategory[] = [
   }
 ]
 
-const realdata = data.map(getCategories);
+const realdata = data.flatMap(getCategories);
 
 function App() {
   const [sdk, setSdk] = useState<AmplienceSdk>();
   const [searchWord, setSearchWord] = useState("") ;
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState([""]);
 
   useEffect(() => {
     init<AmplienceSdk>().then(setSdk);
@@ -2000,6 +2000,10 @@ function App() {
 
   const fetchSuggestions = () => {
     console.log('click');
+    if (searchWord.length < 2)
+      return;
+
+    setResults(realdata.filter(c => c.includes(searchWord)));
 
     // fetch(api('dr'), { method: 'GET', headers })
     //   .then(response => response.json())
@@ -2015,13 +2019,13 @@ function App() {
     <AppWrap  className="App">
       <Title>Product</Title>
       <Text>Enter a product name below, then click Search to find the right product</Text>
-      {
-        realdata.map(s => <span>{s}</span>)
-      }
       <SearchBoxWrap>
         <SearchBox placeholder="Product name eg. Dress" type="text" className="input" onChange={searchWordChangeHandler} value={searchWord} />
       </SearchBoxWrap>
       <SearchButton onClick={fetchSuggestions} disabled={searchWord.length < 2}>Search</SearchButton>
+      {
+        results.map(c => <div>c</div>)
+      }
     </AppWrap>
   );
 }
