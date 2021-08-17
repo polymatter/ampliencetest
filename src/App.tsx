@@ -2024,7 +2024,7 @@ function App() {
   return (
     <AppWrap  className="App">
       <Title>Product</Title>
-      <Text>Enter a product name below, then click Search to find the right product { JSON.stringify(sdk.params) } </Text>
+      <Text>Enter a product name below, then click Search to find the right product [{ JSON.stringify(sdk.params) }] </Text>
       <SearchBoxWrap>
         <SearchBox placeholder="Product name eg. Dress" type="text" className="input" onChange={searchWordChangeHandler} value={searchWord} />
       </SearchBoxWrap>
