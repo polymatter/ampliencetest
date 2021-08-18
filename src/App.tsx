@@ -2,38 +2,69 @@ import './App.css';
 import { init } from 'dc-extensions-sdk';
 import type { ContentFieldExtension } from 'dc-extensions-sdk';
 import { useState, useEffect } from 'react';
-import { AppWrap, SearchBox, Title, Text, SearchButton, SearchBoxWrap, ListTable, ListTableBody, ListTableRow, ListTableData } from './style';
+import { ProductPicker } from './ProductPicker';
+import {CategoryPicker} from './CategoryPicker';
 
-type FieldModel = string;
-interface Parameters {
+export type FieldModel = string;
+export interface Parameters {
   instance: {
-    "poq-app-identifier": string,
-    "poq-currency-identifier": string,
-    "product-search-url": string
+    headers: {
+      "poq-app-identifier": string,
+      "poq-currency-identifier": string,
+    }
+    endpoint: {
+      searchUrl: string,
+      listProperty: string,
+      imageProperty: string,
+      displayLabelProperty: string,
+    }
+    pickerType: "product" | "category"
   };
   installation: {
     configParam: string;
   }
 }
 
-type AmplienceSdk = ContentFieldExtension<FieldModel, Parameters>;
-interface PoqCategory {
-  id: string;
-  name: string;
-  parentCategoryId?: string;
-  imageUrl?: string;
-  categories?: PoqCategory[]
+export type AmplienceSdk = ContentFieldExtension<FieldModel, Parameters>;
+
+function App() {
+  const [sdk, setSdk] = useState<AmplienceSdk>();
+
+  useEffect(() => {
+    init<AmplienceSdk>().then(setSdk);
+  }, []);
+
+  if (!sdk) {
+    return <div className="App">Loading ...</div>
+  }
+
+  const pickerType = sdk.params.instance.pickerType;
+  if (pickerType.toLowerCase() == "category") {
+    return <CategoryPicker sdk={sdk} />
+  }
+
+  return <ProductPicker sdk={sdk} />
 }
 
-function getCategories(item : PoqCategory): string[] {
-  if (!Array.isArray(item.categories))
-    return [item.name];
+export default App;
 
-  return item.categories.flatMap(child => {
-    const a = getCategories(child).map(c => `${item.name} > ${c}`);
-    return a;
-  });
-}
+// interface PoqCategory {
+//   id: string;
+//   name: string;
+//   parentCategoryId?: string;
+//   imageUrl?: string;
+//   categories?: PoqCategory[]
+// }
+
+// function getCategories(item : PoqCategory): string[] {
+//   if (!Array.isArray(item.categories))
+//     return [item.name];
+
+//   return item.categories.flatMap(child => {
+//     const a = getCategories(child).map(c => `${item.name} > ${c}`);
+//     return a;
+//   });
+// }
 
 // const data : PoqCategory[] = [
 //   {
@@ -1963,93 +1994,3 @@ function getCategories(item : PoqCategory): string[] {
 // ]
 
 // const realdata = data.flatMap(getCategories);
-
-interface SearchResult {
-  querySuggestions: QuerySuggestions[],
-  categories: string[]
-}
-
-interface QuerySuggestions {
-  query: string,
-  displayText: string
-}
-
-function App() {
-  const [sdk, setSdk] = useState<AmplienceSdk>();
-  const [searchWord, setSearchWord] = useState("") ;
-  const [results, setResults] = useState([] as QuerySuggestions[]);
-
-  useEffect(() => {
-    init<AmplienceSdk>().then(setSdk);
-  }, []);
-
-  useEffect(() => {
-    if (!hasLoadedSdk(sdk))
-      return;
-
-    sdk.field.getValue();
-  }, [sdk]);
-
-  useEffect(() => {
-    if (searchWord.length < 2) {
-      setResults([]);
-    }
-  }, [searchWord])
-
-  const hasLoadedSdk = (sdk: AmplienceSdk | undefined): sdk is AmplienceSdk => {
-    return !!sdk;
-  }
-
-  const searchWordChangeHandler = (event : React.ChangeEvent<HTMLInputElement>) => {
-    const searchWord = event.target.value;
-    setSearchWord(searchWord);
-  }
-
-  const fetchSuggestions = () => {
-    if (!sdk)
-      return;
-
-    const headers = {
-      "poq-app-identifier": sdk.params.instance['poq-app-identifier'],
-      "poq-currency-identifier": sdk.params.instance['poq-currency-identifier']
-    }
-
-    const url = sdk.params.instance['product-search-url'].replace('${search}', searchWord);
-
-    fetch(url, { method: 'GET', headers })
-      .then(response => response.json())
-      .then(data => {
-        setResults((data as SearchResult).querySuggestions);
-      });
-  }
-
-  if (!hasLoadedSdk(sdk))
-    return <div className="App">Loading ...</div>
-
-  return (
-    <AppWrap  className="App">
-      <Title>Product</Title>
-      <Text>Enter a product name below, then click Search to find the right product [{ JSON.stringify(sdk.params) }] </Text>
-      <SearchBoxWrap>
-        <SearchBox placeholder="Product name eg. Dress" type="text" className="input" onChange={searchWordChangeHandler} value={searchWord} />
-      </SearchBoxWrap>
-      <SearchButton onClick={fetchSuggestions} disabled={searchWord.length < 2}>Search</SearchButton>
-      {
-        results.length > 0 &&
-        <ListTable>
-          <ListTableBody>
-            {
-              results.map(result => {
-                return <ListTableRow>
-                  <ListTableData>{result.displayText}</ListTableData>
-                </ListTableRow>
-              })
-            }
-          </ListTableBody>
-        </ListTable>
-      }
-    </AppWrap>
-  );
-}
-
-export default App;
