@@ -84,12 +84,13 @@ export const ListTableBody = styled.tbody`
 
 export const ListTableRow = styled.tr`
     display: table-row;
-    border-bottom: 1px solid #efefef;
     outline: none;
     cursor: pointer;
 `;
 
-export const ListTableData = styled.td`
+export const ListTableData = styled.td<{ selected?: boolean }>`
+    border-bottom: 5px solid #efefef;
     padding: 8px 16px;
     text-align: left;
+    background: ${props => props.selected ? 'black' : 'red'}
 `;
