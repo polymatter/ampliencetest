@@ -38,7 +38,6 @@ function App() {
     return <div className="App">Loading ...</div>
   }
 
-  sdk.frame.startAutoResizer();
   const pickerType = sdk.params.instance.pickerType;
   if (pickerType.toLowerCase() == "category") {
     return <CategoryPicker sdk={sdk} />

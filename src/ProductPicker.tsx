@@ -35,6 +35,7 @@ export const ProductPicker = ({ sdk }: { sdk: AmplienceSdk }) => {
         const listProperty = sdk.params.instance.endpoint.listProperty;
 
         setResults(listProperty ? data[listProperty] : data);
+        sdk.frame.setHeight();
       });
   }
 
@@ -42,13 +43,16 @@ export const ProductPicker = ({ sdk }: { sdk: AmplienceSdk }) => {
 
   const selectRow = (result: SearchResult) => {
     return () => {
-      setValue(result[displayLabelProperty])
+      setValue(result[displayLabelProperty]);
+      setSearchWord(result[displayLabelProperty]);
     }
   }
 
   const isSelected = (result: SearchResult) => {
     return value === result[displayLabelProperty]
   }
+
+  const isSearching = (value !== searchWord)
 
   return (
     <AppWrap className="App">
@@ -57,9 +61,9 @@ export const ProductPicker = ({ sdk }: { sdk: AmplienceSdk }) => {
       <SearchBoxWrap>
         <SearchBox placeholder="Product name eg. Dress" type="text" className="input" onChange={searchWordChangeHandler} value={searchWord} />
       </SearchBoxWrap>
-      <SearchButton onClick={fetchSuggestions} >Search</SearchButton>
+      <SearchButton onClick={fetchSuggestions} disabled={!isSearching}>Search</SearchButton>
       {
-        results.length > 0 &&
+        isSearching && results.length > 0 &&
         <ListTable>
           <ListTableBody>
             {

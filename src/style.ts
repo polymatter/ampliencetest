@@ -92,5 +92,5 @@ export const ListTableData = styled.td<{ selected?: boolean }>`
     border-bottom: 5px solid #efefef;
     padding: 8px 16px;
     text-align: left;
-    background: ${props => props.selected ? 'black' : 'red'}
+    background: ${props => props.selected ? '#efefef' : 'white'}
 `;
