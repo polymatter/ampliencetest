@@ -44,7 +44,6 @@ export const ProductPicker = ({ sdk }: { sdk: AmplienceSdk }) => {
   const selectRow = (result: SearchResult) => {
     return () => {
       setValue(result[displayLabelProperty]);
-      setSearchWord(result[displayLabelProperty]);
     }
   }
 
@@ -57,6 +56,9 @@ export const ProductPicker = ({ sdk }: { sdk: AmplienceSdk }) => {
   return (
     <AppWrap className="App">
       <Title>Product</Title>
+      { value && 
+        <Text>Selected value: {value}</Text>
+      }
       <Text>Enter a product name below, then click Search to find the right product</Text>
       <SearchBoxWrap>
         <SearchBox placeholder="Product name eg. Dress" type="text" className="input" onChange={searchWordChangeHandler} value={searchWord} />

@@ -48,7 +48,6 @@ export const CategoryPicker = ({ sdk }: { sdk: AmplienceSdk }) => {
   const selectRow = (result: SearchResult) => {
     return () => {
       setValue(result[displayLabelProperty]);
-      setSearchWord(result[displayLabelProperty]);
     }
   }
 
@@ -61,6 +60,9 @@ export const CategoryPicker = ({ sdk }: { sdk: AmplienceSdk }) => {
   return (
     <AppWrap className="App">
       <Title>Category</Title>
+      { value && 
+        <Text>Selected value: {value}</Text>
+      }
       <Text>Select from the categories below</Text>
       <SearchBoxWrap>
         <SearchBox placeholder="Product name eg. Dress" type="text" className="input" onChange={searchWordChangeHandler} value={searchWord} />
