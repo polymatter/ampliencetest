@@ -41,7 +41,7 @@ interface AmplienceSlot {
 
 type AmplienceBanners = AmplienceBanner[];
 
-export default function () {
+export default function App() {
     useEffect(() => {
         init().then(setSdk);
     }, [])
@@ -74,8 +74,9 @@ export default function () {
 
     return <div>
         <div>Yo my dudes SDK has loaded</div>
+        <div>There are {banners.length} banners</div>
         { banners.map(banner => {
-            <img src={getBannerImage(banner)} />
+            return <img src={getBannerImage(banner)} alt={banner['banner-image'].id} />
         })}
     </div>
 }
