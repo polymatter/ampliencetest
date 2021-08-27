@@ -12,6 +12,7 @@
     "@types/react": "^17.0.14",
     "@types/react-dom": "^17.0.9",
     "dc-extensions-sdk": "^2.0.0",
+    "dc-visualization-sdk": "^1.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
@@ -44,7 +45,6 @@
     ]
   },
   "devDependencies": {
-    "@types/styled-components": "^5.1.11",
-    "dc-visualization-sdk": "^1.1.0"
+    "@types/styled-components": "^5.1.11"
   }
 }

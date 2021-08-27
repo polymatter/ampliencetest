@@ -2,7 +2,7 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import { AppWrap, SearchBox, Title, Text, SearchButton, SearchBoxWrap, ListTable, ListTableBody, ListTableRow, ListTableData } from './style';
 
-import type { AmplienceSdk } from './App';
+import type { AmplienceSdk } from './TempApp';
 
 type SearchResult = Record<string, string>
 
