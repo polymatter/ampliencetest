@@ -61,7 +61,9 @@ const deviceRatios: deviceRatioMap = {
   }
 }
 
-export default function App({ deviceType = 'ios' }: { deviceType: keyof deviceRatioMap }) {
+export default function App() {
+  const deviceType: keyof deviceRatioMap = 'ios'
+
   useEffect(() => {
     init().then(setSdk);
   }, [])
@@ -78,14 +80,14 @@ export default function App({ deviceType = 'ios' }: { deviceType: keyof deviceRa
 
   const [banners, setBanners] = useState<AmplienceBanners>();
 
-  if (!sdk || !banners) {
-    return <div>Loading...</div>
-  }
-
   const [windowHeight, setHeight] = useState(window.innerHeight)
   useWindowResize(() => {
     setHeight(window.innerHeight);
   })
+
+  if (!sdk || !banners) {
+    return <div>Loading...</div>
+  }
 
   sdk.form.changed((slot: AmplienceSlot) => {
     setBanners(slot.content.banners);
