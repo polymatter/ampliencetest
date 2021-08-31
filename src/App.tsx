@@ -54,7 +54,7 @@ export default function App() {
         sdk.form.get<AmplienceSlot>().then(slot => {
             setBanners(slot.content.banners);
         })
-    },[sdk])
+    }, [sdk])
 
     const [banners, setBanners] = useState<AmplienceBanners>();
 
@@ -66,7 +66,7 @@ export default function App() {
         setBanners(slot.content.banners);
     });
 
-    const getBannerImage = (banner : AmplienceBanner) => {
+    const getBannerImage = (banner: AmplienceBanner) => {
         const imageData = banner['banner-image'];
 
         return `https://${imageData.defaultHost}/i/${imageData.endpoint}/${imageData.name}`;
@@ -75,7 +75,7 @@ export default function App() {
     return <div>
         <div>Yo my dudes SDK has loaded</div>
         <div>There are {banners.length} banners</div>
-        { banners.map(banner => {
+        {banners.map(banner => {
             return <img src={getBannerImage(banner)} alt={banner['banner-image'].id} />
         })}
     </div>
