@@ -82,6 +82,11 @@ export default function App({ deviceType = 'ios' }: { deviceType: keyof deviceRa
     return <div>Loading...</div>
   }
 
+  const [windowHeight, setHeight] = useState(window.innerHeight)
+  useWindowResize(() => {
+    setHeight(window.innerHeight);
+  })
+
   sdk.form.changed((slot: AmplienceSlot) => {
     setBanners(slot.content.banners);
   });
@@ -91,11 +96,6 @@ export default function App({ deviceType = 'ios' }: { deviceType: keyof deviceRa
 
     return `https://${imageData.defaultHost}/i/${imageData.endpoint}/${imageData.name}`;
   }
-
-  const [windowHeight, setHeight] = useState(window.innerHeight)
-  useWindowResize(() => {
-    setHeight(window.innerHeight);
-  })
 
   const { ratio } = deviceRatios[deviceType];
   const deviceWidth = 812 * ratio;
