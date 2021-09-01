@@ -120,7 +120,8 @@ export default function App() {
           src={getBannerImage(banner)}
           alt={banner['banner-image'].id}
           style={{
-            width: banner.isFeatured ? deviceWidth : deviceWidth / 2
+            width: banner.isFeatured ? deviceWidth : deviceWidth / 2,
+            padding: 0
           }} />
           { banner.isFeatured && <br/> }
         </>
