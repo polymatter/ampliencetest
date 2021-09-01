@@ -115,13 +115,16 @@ export default function App() {
 
   return <div>
     {banners.map(banner => {
-      return <img
-        src={getBannerImage(banner)}
-        alt={banner['banner-image'].id}
-        style={{
-          width: banner.isFeatured ? deviceWidth : deviceWidth / 2,
-          height: banner.isFeatured ? deviceHeight : deviceHeight / 2
-        }} />
+      return <>
+          <img
+          src={getBannerImage(banner)}
+          alt={banner['banner-image'].id}
+          style={{
+            width: deviceWidth,
+            height: deviceHeight
+          }} />
+          { banner.isFeatured && <br/> }
+        </>
     })}
   </div>
 }
