@@ -116,7 +116,7 @@ export default function App() {
   return <div>
     {banners.map((banner, index, banners) => {
       return <>
-          { index != 0 && banners[index-1].isFeatured && <br/>}
+          { index != 0 && !banners[index-1].isFeatured && !banner.isFeatured && <br/>}
           <img
           src={getBannerImage(banner)}
           alt={banner['banner-image'].id}
