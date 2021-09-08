@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/ampliencetest/build/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/ampliencetest/build/static/js/main.f403a770.chunk.js",
-    "main.js.map": "/ampliencetest/build/static/js/main.f403a770.chunk.js.map",
-    "runtime-main.js": "/ampliencetest/build/static/js/runtime-main.7848e11b.js",
-    "runtime-main.js.map": "/ampliencetest/build/static/js/runtime-main.7848e11b.js.map",
-    "static/js/2.2ee76fb9.chunk.js": "/ampliencetest/build/static/js/2.2ee76fb9.chunk.js",
-    "static/js/2.2ee76fb9.chunk.js.map": "/ampliencetest/build/static/js/2.2ee76fb9.chunk.js.map",
-    "static/js/3.b7dc3fd7.chunk.js": "/ampliencetest/build/static/js/3.b7dc3fd7.chunk.js",
-    "static/js/3.b7dc3fd7.chunk.js.map": "/ampliencetest/build/static/js/3.b7dc3fd7.chunk.js.map",
+    "main.css": "/ampliencetest/build/static/css/main.ea1455b2.chunk.css",
+    "main.js": "/ampliencetest/build/static/js/main.cd817711.chunk.js",
+    "main.js.map": "/ampliencetest/build/static/js/main.cd817711.chunk.js.map",
+    "runtime-main.js": "/ampliencetest/build/static/js/runtime-main.7cbe0fa0.js",
+    "runtime-main.js.map": "/ampliencetest/build/static/js/runtime-main.7cbe0fa0.js.map",
+    "static/js/2.b758380a.chunk.js": "/ampliencetest/build/static/js/2.b758380a.chunk.js",
+    "static/js/2.b758380a.chunk.js.map": "/ampliencetest/build/static/js/2.b758380a.chunk.js.map",
+    "static/js/3.95bab8c6.chunk.js": "/ampliencetest/build/static/js/3.95bab8c6.chunk.js",
+    "static/js/3.95bab8c6.chunk.js.map": "/ampliencetest/build/static/js/3.95bab8c6.chunk.js.map",
     "index.html": "/ampliencetest/build/index.html",
-    "static/css/main.6dea0f05.chunk.css.map": "/ampliencetest/build/static/css/main.6dea0f05.chunk.css.map",
-    "static/js/2.2ee76fb9.chunk.js.LICENSE.txt": "/ampliencetest/build/static/js/2.2ee76fb9.chunk.js.LICENSE.txt"
+    "static/css/main.ea1455b2.chunk.css.map": "/ampliencetest/build/static/css/main.ea1455b2.chunk.css.map",
+    "static/js/2.b758380a.chunk.js.LICENSE.txt": "/ampliencetest/build/static/js/2.b758380a.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.7848e11b.js",
-    "static/js/2.2ee76fb9.chunk.js",
-    "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.f403a770.chunk.js"
+    "static/js/runtime-main.7cbe0fa0.js",
+    "static/js/2.b758380a.chunk.js",
+    "static/css/main.ea1455b2.chunk.css",
+    "static/js/main.cd817711.chunk.js"
   ]
 }
