@@ -117,6 +117,7 @@ export default function App() {
     {banners.map((banner, index, banners) => {
       const nextBanner = banners[index+1];
       const isLastBanner = index == banners.length - 1;
+      const newlineRequired = isLastBanner || banner.isFeatured || (!banner.isFeatured && nextBanner.isFeatured)
 
       return <>
           <img
@@ -126,7 +127,7 @@ export default function App() {
             width: banner.isFeatured ? deviceWidth : deviceWidth / 2,
             padding: 0
           }} />
-          { isLastBanner || banner.isFeatured || (!banner.isFeatured && nextBanner.isFeatured) ? <br /> : undefined }
+          { newlineRequired && <br /> }
         </>
     })}
   </div>
