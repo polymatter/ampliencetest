@@ -126,7 +126,7 @@ export default function App() {
             width: banner.isFeatured ? deviceWidth : deviceWidth / 2,
             padding: 0
           }} />
-          { isLastBanner || banner.isFeatured || (!banner.isFeatured && nextBanner.isFeatured) && <br /> }
+          { isLastBanner || banner.isFeatured || (!banner.isFeatured && nextBanner.isFeatured) ? <br /> : undefined }
         </>
     })}
   </div>
