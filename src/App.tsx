@@ -117,7 +117,7 @@ export default function App() {
     {banners.map((banner, index, banners) => {
       const nextBanner = banners[index+1];
       const isLastBanner = index == banners.length - 1;
-      const newlineRequired = isLastBanner || banner.isFeatured || (!banner.isFeatured && nextBanner.isFeatured)
+      const newlineRequired = isLastBanner || banner.isFeatured || nextBanner.isFeatured
 
       return <>
           <img
