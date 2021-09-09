@@ -115,6 +115,9 @@ export default function App() {
 
   return <div>
     {banners.map((banner, index, banners) => {
+      const nextBanner = banners[index+1];
+      const isLastBanner = index == banners.length - 1;
+
       return <>
           <img
           src={getBannerImage(banner)}
@@ -123,8 +126,7 @@ export default function App() {
             width: banner.isFeatured ? deviceWidth : deviceWidth / 2,
             padding: 0
           }} />
-          { banner.isFeatured && <br/>}
-          { index != 0 && !banners[index-1].isFeatured && !banner.isFeatured && <br/>}
+          { isLastBanner || banner.isFeatured || (!banner.isFeatured && nextBanner.isFeatured) && <br /> }
         </>
     })}
   </div>
