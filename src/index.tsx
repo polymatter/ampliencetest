@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './PickerApp';
+import App from './BannerPreviewApp';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
