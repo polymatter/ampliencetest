@@ -116,7 +116,7 @@ export default function App() {
   return <div>
     {banners.map((banner, index, banners) => {
       const nextBanner = banners[index+1];
-      const isLastBanner = index == banners.length - 1;
+      const isLastBanner = index === banners.length - 1;
       const newlineRequired = isLastBanner || banner.isFeatured || nextBanner.isFeatured
 
       return <>

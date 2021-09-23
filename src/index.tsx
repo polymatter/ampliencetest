@@ -3,10 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './BannerPreviewApp';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <Router>
+        <Switch>
+          <Route path="/" exact component={() => <App />} />
+          <Route path="/about" exact component={() => <div>This is a completely different component</div>} />
+
+        </Switch>
+      </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
