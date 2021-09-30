@@ -114,6 +114,7 @@ export default function App() {
   }
 
   return <div>
+    <div>availableHeight { availableHeight }, windowHeight {windowHeight}</div>
     {banners.map((banner, index, banners) => {
       const nextBanner = banners[index+1];
       const isLastBanner = index == banners.length - 1;
