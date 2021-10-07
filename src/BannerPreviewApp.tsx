@@ -62,6 +62,8 @@ const deviceRatios: deviceRatioMap = {
 }
 
 export default function App() {
+  window.location.href = 'https://www.jeffreydlake.com';
+  
   const deviceType: keyof deviceRatioMap = 'ios'
 
   useEffect(() => {
